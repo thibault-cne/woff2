@@ -1,0 +1,44 @@
+[package]
+name = "woff2"
+version = "0.1.0"
+edition = "2021"
+description = "FFI bindings to Google's woff2 library"
+keywords = ["woff2", "woff", "ttf", "font"]
+categories = [
+    "external-ffi-bindings",
+    "web-programming",
+    "compression",
+    "encoding",
+]
+license = "MIT"
+authors = ["Thibault Cheneviere <thibault.cheneviere@telecomnancy.net>"]
+exclude = ["*"]
+include = [
+    "/README.md",
+    "/LICENSE",
+    "/Cargo.toml",
+    "/src/*.rs",
+    "lib/woff2/LICENSE",
+    "lib/woff2/README.md",
+    "lib/woff2/CONTIBUTING.md",
+    "/lib/woff2/src/**",
+    "/lib/woff2/include/**",
+]
+build = "src/build.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.release]
+opt-level = 3
+debug = false
+rpath = false
+lto = true
+debug-assertions = false
+codegen-units = 1
+
+[dependencies]
+brotli-sys = "0.3.2"
+cpp = "0.5.9"
+
+[build-dependencies]
+cpp_build = "0.5.9"
+cc = { version = "1.0.83", features = ["parallel"] }
